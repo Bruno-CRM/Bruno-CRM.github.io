@@ -358,7 +358,7 @@
 </svg>
             
             <div class="header-cta">
-                <a href="https://calendly.com/votre-lien" class="cta-btn cta-calendly" target="_blank">
+                <a href="https://calendly.com/votre-lien" class="cta-btn cta-calendly" target="_blank" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/bruno-lafabriquecrm/30min'}); return false;">
                     <span class="emoji">📅</span>Booker une visio 30'
                 </a>
                 
@@ -374,7 +374,7 @@
                 <p>Je suis consultant CRM & Marketing automation, avec plus de 15 ans d’expérience à la croisée :</p>
                 <ul>
                     <li>- de la conception de parcours digitaux et du développement/création d’emails,</li>
-                    <li>- et de la relation clients stratégiques (Key / Senior Account Manager, CSM) au sein d’éditeurs SaaS Marketing.</li>
+                    <li>- et de l'accompagnement stratégique (Key / Senior Account Manager, CSM) au sein d’éditeurs SaaS Marketing.</li>
                 </ul>
             </div>
 
@@ -435,5 +435,10 @@
     <button onclick="this.closest('dialog').close()">Fermer</button>
   </div>
 </dialog>
+    <!-- Début de widget de badge Calendly -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+<script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/bruno-lafabriquecrm/30min', text: 'Planifier du temps avec moi', color: '#0069ff', textColor: '#ffffff', branding: true }); }</script>
+<!-- Fin de widget de badge Calendly -->
 </body>
 </html>
