@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Fabrique CRM - Expert Email & Parcours Client</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Changa:wght@200..800&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #F5F3EF;
+            background-image: url('img/texture.png');
+            color: #34495E;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 10px 20px 40px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 60px 0 50px;
+            gap: 30px;
+        }
+
+        .logo {
+            max-width: 340px;
+            height: auto;
+            flex-shrink: 1;
+        }
+
+        .header-cta {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            font-size: 0.95em;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.4s ease;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+            font-family: 'Changa', Georgia, serif;
+            font-weight: 500;
+        }
+
+        .cta-calendly {
+            background: linear-gradient(135deg, #0c4b72 0%, #2a7a99 100%);
+            color: white;
+            border: none;
+        }
+
+        .cta-calendly:hover {
+            background: linear-gradient(135deg, #0c4b72 0%, #0c4b72 100%);
+            transform: translateY(-2px);
+        }
+
+        .cta-whatsapp {
+            background: linear-gradient(135deg, #25D366 0%, #20BA5A 100%);
+            color: white;
+            border: none;
+        }
+
+        .cta-whatsapp:hover {
+            background: linear-gradient(135deg, #20BA5A 0%, #1DA851 100%);
+            transform: translateY(-2px);
+        }
+
+        .emoji {
+            font-size: 1.2em;
+        }
+
+        main {
+            padding: 20px 20px;
+        }
+
+        /* Carrousel simplifié - flux continu */
+        .hero-section {
+            margin-bottom: 70px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-carousel {
+            margin-bottom: 50px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            min-height: 220px;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(15px);
+            animation: slideIn 15s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        .carousel-slide:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .carousel-slide:nth-child(2) {
+            animation-delay: 5s;
+        }
+
+        .carousel-slide:nth-child(3) {
+            animation-delay: 10s;
+        }
+
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            3%, 30% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            33%, 100% {
+                opacity: 0;
+                transform: translateY(-15px);
+            }
+        }
+
+        .carousel-quote {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.4em;
+            color: #2C3E50;
+            line-height: 1.35;
+            font-weight: 500;
+            margin-bottom: 20px;
+            font-style: italic;
+            letter-spacing: -0.5px;
+        }
+
+        .carousel-author {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95em;
+            color: #E74C3C;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .hero-solution {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6em;
+            font-weight: 600;
+            color: #0c4b72;
+            line-height: 1.35;
+            letter-spacing: -0.3px;
+        }
+
+        h1, .services h2 {
+            font-family: 'Changa', Georgia, serif;
+            font-size: 1.6em;
+            color: #0c4b72;
+            margin-bottom: 35px;
+            font-weight: 500;
+            letter-spacing: -0.8px;
+            text-align: center;
+            font-style: italic;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+        }
+
+        .intro {
+            font-size: 1.15em;
+            margin-bottom: 35px;
+            line-height: 1.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .intro p {
+            margin-bottom: 15px;
+        }
+
+        .intro ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .intro li {
+            margin-bottom: 8px;
+            line-height: 1.7;
+        }
+
+        .services {
+            background: linear-gradient(135deg, rgba(12, 75, 114, 0.03) 0%, rgba(42, 122, 153, 0.05) 100%);
+            padding: 40px 35px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+        }
+
+        .services h2 {
+            text-align: left;
+            font-size: 1.4em;
+            margin-bottom: 25px;
+        }
+
+        .services ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .services li {
+            padding-left: 30px;
+            margin-bottom: 18px;
+            position: relative;
+            line-height: 1.7;
+            font-size: 1.05em;
+        }
+
+        .services li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #0c4b72;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(12, 75, 114, 0.2), transparent);
+            margin: 50px 0;
+        }
+
+        .clients-section {
+            margin: 50px 0;
+        }
+
+        .clients-section h2 {
+            font-size: 1.4em;
+            margin-bottom: 35px;
+        }
+
+        .clients-logos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            align-items: center;
+            justify-items: center;
+        }
+
+        .client-logo {
+            width: 100%;
+            max-width: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .client-logo img {
+            width: 100%;
+            height: auto;
+            filter: grayscale(100%) opacity(0.7);
+            transition: all 0.3s ease;
+        }
+
+        .client-logo img:hover {
+            filter: grayscale(0%) opacity(1);
+            transform: scale(1.05);
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(12, 75, 114, 0.15);
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: #0c4b72;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #2a7a99;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 40px 0 30px;
+            }
+
+            .logo {
+                max-width: 280px;
+            }
+
+            .header-cta {
+                width: 100%;
+            }
+
+            .cta-btn {
+                width: 100%;
+            }
+
+            .hero-section {
+                margin-bottom: 50px;
+            }
+
+            .hero-carousel {
+                margin-bottom: 40px;
+            }
+
+            .carousel-container {
+                min-height: 260px;
+            }
+
+            .carousel-quote {
+                font-size: 1.6em;
+                line-height: 1.3;
+                margin-bottom: 15px;
+            }
+
+            .carousel-author {
+                font-size: 0.85em;
+            }
+
+            .hero-solution {
+                font-size: 1.3em;
+            }
+
+            h1, .services h2 {
+                font-size: 1.4em;
+            }
+
+            .intro {
+                font-size: 1.05em;
+            }
+
+            .services {
+                padding: 30px 25px;
+            }
+
+            .clients-logos {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="img/logo.svg" alt="La Fabrique CRM" class="logo">
+            
+            <div class="header-cta">
+                <a href="https://calendly.com/bruno-lafabriquecrm/30min" class="cta-btn cta-calendly" target="_blank">
+                    <span class="emoji">📅</span>Booker une visio 30'
+                </a>
+                
+                <a href="https://wa.me/33619056349" class="cta-btn cta-whatsapp" target="_blank">
+                    <span class="emoji">💬</span>Discuter sur WhatsApp
+                </a>
+            </div>
+        </header>
+
+        <main>
+            <div class="hero-section">
+                <div class="hero-carousel">
+                    <div class="carousel-container">
+                        <div class="carousel-slide">
+                            <p class="carousel-quote">« Chaque nouveau client enterprise est une victoire commerciale… et un stress côté delivery. »</p>
+                            <p class="carousel-author">Yvon, Head of Professional Services sous tension</p>
+                        </div>
+
+                        <div class="carousel-slide">
+                            <p class="carousel-quote">« Chaque optimisation prend des semaines alors qu'on aurait besoin d'itérer en jours. »</p>
+                            <p class="carousel-author">Philotée, Head of CRM pressée</p>
+                        </div>
+
+                        <div class="carousel-slide">
+                            <p class="carousel-quote">« Tout le monde parle de ROI, mais peu savent vraiment l'activer dans le CRM. »</p>
+                            <p class="carousel-author">Jean-Patrick, Directeur Digital sceptique</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="hero-solution">
+                    Je ne fais pas que réparer. Je construis des systèmes CRM qui génèrent du cash.
+                </p>
+            </div>
+
+            <div class="intro">
+                <p><strong>Bruno Oliveira</strong>, consultant CRM & Marketing automation avec plus de 15 ans d'expérience. J'interviens à la croisée de la conception de parcours digitaux, du développement d'emails hautement performants, et de l'accompagnement stratégique orienté résultats.</p>
+            </div>
+
+            <div class="services">
+                <h2>J'interviens principalement auprès de clients des secteurs Banque, Retail, Média, Pharma, Industrie sur :</h2>
+                <ul>
+                    <li>l'audit de leur écosystème CRM / marketing automation,</li>
+                    <li>la conception et l'optimisation de parcours clients (onboarding, fidélisation, réactivation, anti-churn, transactionnel…),</li>
+                    <li>le design & templating HTML d'emails transactionnels et marketing,</li>
+                    <li>la mise en place de comités de pilotage et de business reviews orientés résultats.</li>
+                </ul>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="clients-section">
+                <h2>Références</h2>
+                <div class="clients-logos">
+                    <div class="client-logo">
+                        <img src="img/logo_bnp.png" alt="BNP Banque Privée">
+                    </div>
+                    <div class="client-logo">
+                        <img src="img/logo_bnp_pf.png" alt="BNP Personal Finance">
+                    </div>
+                    <div class="client-logo">
+                        <img src="img/Logo_Saint-Gobain.png" alt="Saint-Gobain">
+                    </div>
+                    <div class="client-logo">
+                        <img src="img/Logo_Supermarche_Match.png" alt="Supermarché Match">
+                    </div>
+                    <div class="client-logo">
+                        <img src="img/groupe_seloger.png" alt="Groupe Se Loger">
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <p class="intro">
+                Chaque projet est une opportunité de créer quelque chose d'unique, pensé pour vos objectifs et vos clients. Je travaille avec rigueur et créativité pour transformer vos enjeux CRM en solutions concrètes et performantes.
+            </p>
+        </main>
+
+        <footer>
+            <p>La Fabrique CRM • 2025</p>
+            <p style="margin-top: 12px;">
+                <a href="#mentions-legales">Mentions légales</a>
+            </p>
+        </footer>
+        
+        <div id="mentions-legales" style="margin-top: 40px; padding: 30px; background: rgba(255,255,255,0.5); border-radius: 12px; font-size: 0.9em; color: #7f8c8d;">
+            <h3 style="color: #0c4b72; margin-bottom: 15px; font-family: 'Changa', Georgia, serif;">Mentions légales</h3>
+            <p>Éditeur : La Fabrique CRM<br>
+            SIRET 994292605 00015<br>
+            TVA FR 78994292605</p>
+        </div>
+    </div>
+    <!-- Début de widget de badge Calendly -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+<script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/bruno-lafabriquecrm/30min', text: 'Planifier du temps avec moi', color: '#0069ff', textColor: '#ffffff', branding: true }); }</script>
+<!-- Fin de widget de badge Calendly -->
+</body>
+</html>
